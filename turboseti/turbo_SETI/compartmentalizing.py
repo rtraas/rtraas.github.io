@@ -50,8 +50,6 @@ Author:
     Version 1.0             Raffy Traas (raffytraas14@gmail.com)
     
 Last Updated: 06/23/2020
-
-
 """
 
 
