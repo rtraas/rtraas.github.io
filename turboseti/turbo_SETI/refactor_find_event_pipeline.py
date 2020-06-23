@@ -129,51 +129,113 @@ def refactor_find_event_pipeline(dat_file_list_str,
                         saving=True,
                         user_validation=False):
 
+        
+        
     print()
     print("************   BEGINNING FIND_EVENT PIPELINE   **************")
     print()
 
+    
+        
+    #Informs user of whether the first observation in the cadence is an "ON" or "OFF" observation
     if on_source_complex_cadence == False:
         print("Assuming the first observation is an " + on_off_first)
 
     if on_source_complex_cadence != False:
         print("Assuming a complex cadence for the following on source: " + on_source_complex_cadence)
 
-    #Opening list of files
+        
+    
+    #Opens the file list
+    #Creates a list of files
     dat_file_list, n_files = compartmentalizing.opener(dat_file_list_str, is_test=True)
 
 
-    #Getting source names
+
+    #Extracts source names from the created list of files
     source_name_list = compartmentalizing.get_source_names(dat_file_list)
 
-    # This will be skipped because, by default, "on_source_complex_cadence" is set to "False"
+
+
+    
+    #Creates a list of 
+    #This will be skipped because, by default, "on_source_complex_cadence" is set to "False"
     complex_cadence = compartmentalizing.get_complex_cadence(on_source_complex_cadence, source_name_list)
+
+
 
     print("There are " + str(len(dat_file_list)) + " total files in the filelist " + dat_file_list_str)
     print("therefore, looking for events in " + str(int(n_files/number_in_cadence)) + " on-off set(s)")
     print("with a minimum SNR of " + str(SNR_cut))
 
+
+
+    #Informing user of filter-search type based on user input configuration
     compartmentalizing.filter_threshold_statements(filter_threshold)
 
+
+
+    #Informing user of whether zero drift signals will be included in the search
     compartmentalizing.check_zero_drift_statements(check_zero_drift)
 
+
+
+    #Informing user of whether the output file will be saved
     compartmentalizing.save_statements(saving)
 
-    compartmentalizing.checkpoint(1)
 
+    
+    #Used for debugging purposes
+    #If checkpoint displays, all code is functional before checkpoint
+    #Checkpoints need not be placed in exact positions as presented here
+    ##compartmentalizing.checkpoint(1)
+        
+      
+    #If "user_validation" = "True" (specified as a parameter in "refactor_find_event_pipeline" call),
+    #   queries user input of "Y/N" for validation of inputted parameters
+    #Really only useful for debugging purposes
     compartmentalizing.validation(user_validation)
 
-    compartmentalizing.checkpoint(2)
-        #global name
-        #Looping over number_in_cadence chunks.
-    candidate_list, name, id_num = compartmentalizing.get_candidates(n_files, number_in_cadence, on_source_complex_cadence, complex_cadence, on_off_first, dat_file_list, SNR_cut, check_zero_drift, filter_threshold, is_test=False)
-    compartmentalizing.checkpoint(3)
-    find_event_output_dataframe = compartmentalizing.convert_to_dataframe_or_list(candidate_list)
 
+    
+    #Used for debugging purposes
+    #If checkpoint displays, all code is functional before checkpoint
+    #Checkpoints need not be placed in exact positions as presented here
+    ##compartmentalizing.checkpoint(2)
+        
+        
+        
+    #Looping over as many chunks as specified in "number_in_cadence".
+    #Creates a list of candidate events that will be converted into a pandas DataFrame
+    #Returns the names and ID's of the elements in the list of candidate events
+    candidate_list, name, id_num = compartmentalizing.get_candidates(n_files, number_in_cadence, on_source_complex_cadence, complex_cadence, on_off_first, dat_file_list, SNR_cut, check_zero_drift, filter_threshold, is_test=False)
+    
+
+
+    #Used for debugging purposes
+    #If checkpoint displays, all code is functional before checkpoint
+    #Checkpoints need not be placed in exact positions as presented here
+    ##compartmentalizing.checkpoint(3)
+
+
+    
+    #Converts the created candidate list into a pandas DataFrame
+    find_event_output_dataframe = compartmentalizing.convert_to_dataframe_or_list(candidate_list)
+        
+        
+        
+    #Outputs the created DataFrame of candidate events 
     find_event_output_dataframe = compartmentalizing.outputs(saving, check_zero_drift, name, id_num, filter_threshold, SNR_cut, find_event_output_dataframe)
 
+        
+        
     return find_event_output_dataframe
 
-refactor_find_event_pipeline('HIP39826.lst')
-refactor_find_event_pipeline('HIP39826.lst', filter_threshold=2)
-refactor_find_event_pipeline('HIP39826.lst', filter_threshold=1)
+
+
+#The "refactor_event_pipeline" calls below were used for testing purposes
+#The list "HIP39826.lst" can be found in the "rtraas/radio-technosignature-searches-of-TESS-stars/turboseti" folder
+
+#refactor_find_event_pipeline('HIP39826.lst')
+#refactor_find_event_pipeline('HIP39826.lst', filter_threshold=2)
+#refactor_find_event_pipeline('HIP39826.lst', filter_threshold=1)
