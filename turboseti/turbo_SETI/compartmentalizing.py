@@ -1,11 +1,32 @@
+"""
+This module contains utilities to be used in "refactor_event_pipeline".
+
+The purpose of this module is mostly to provide a cleaner, simpler structure
+to "refactor_event_pipeline", allowing for easier use and debugging by
+"compartmentalizing" or "chunking" processes performed in
+"refactor_event_pipeline" into simple steps.
+
+Version 1.0             Raffy Traas (raffytraas14@gmail.com)
+
+"""
+
 import refactor_find_event
 import pandas as pd
 
 import time
 import numpy as np
 
+
 def checkpoint(num):
+    """
+    Really only used for debugging purposes.
+    When debugging, allows the user to place various checkpoints 
+    in the code to help diagnose where the code is running properly
+    and where it isn't.
+    """
+
     print('========================= This is checkpoint number ' + str(num) + ' =====================')
+
 
 def opener(file_list, is_test=False):
     """
