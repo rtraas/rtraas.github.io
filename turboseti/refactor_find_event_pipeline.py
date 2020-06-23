@@ -90,7 +90,7 @@ author:
     Version 2.0 - Sofia Sheikh (ssheikhmsa@gmail.com),
     Version 1.0 - Emilio Enriquez (jeenriquez@gmail.com)
 
-Last updated: 05/24/2020
+Last updated: 06/22/2020
 ***
 NOTE: This code works for .dat files that were produced by seti_event.py
 after turboSETI version 0.8.2, and blimpy version 1.1.7 (~mid 2019). The
@@ -109,6 +109,7 @@ NOTE: No support for spliced/non-spliced option select for when
 #required packages and programs
 import find_event
 import pandas as pd
+import refactor_find_event
 
 #required for find_event
 import time
@@ -118,7 +119,7 @@ import numpy as np
 import compartmentalizing
 from compartmentalizing import *
 
-def find_event_pipeline(dat_file_list_str,
+def refactor_find_event_pipeline(dat_file_list_str,
                         SNR_cut=10,
                         check_zero_drift=False,
                         filter_threshold=3,
@@ -139,22 +140,14 @@ def find_event_pipeline(dat_file_list_str,
         print("Assuming a complex cadence for the following on source: " + on_source_complex_cadence)
 
     #Opening list of files
-    dat_file_list, n_files = compartmentalizing.open(dat_file_list_str, is_test=True)
+    dat_file_list, n_files = compartmentalizing.opener(dat_file_list_str, is_test=True)
 
 
     #Getting source names
     source_name_list = compartmentalizing.get_source_names(dat_file_list)
 
     # This will be skipped because, by default, "on_source_complex_cadence" is set to "False"
-    if on_source_complex_cadence != False:
-        complex_cadence = []
-        for i in range(0, len(source_name_list)):
-            source = source_name_list[i]
-            if source == on_source_complex_cadence:
-                complex_cadence.append(1)
-            else:
-                complex_cadence.append(0)
-        print("The derived cadence is: " + str(complex_cadence))
+    complex_cadence = compartmentalizing.get_complex_cadence(on_source_complex_cadence, source_name_list)
 
     print("There are " + str(len(dat_file_list)) + " total files in the filelist " + dat_file_list_str)
     print("therefore, looking for events in " + str(int(n_files/number_in_cadence)) + " on-off set(s)")
@@ -166,23 +159,21 @@ def find_event_pipeline(dat_file_list_str,
 
     compartmentalizing.save_statements(saving)
 
-    if user_validation == True:
-        question = "Do you wish to proceed with these settings?"
-        while "the answer is invalid":
-            reply = str(input(question+' (y/n): ')).lower().strip()
-            if reply == '':
-                return
-            if reply[0] == 'y':
-                break
-            if reply[0] == 'n':
-                return
+    compartmentalizing.checkpoint(1)
+
+    compartmentalizing.validation(user_validation)
+
+    compartmentalizing.checkpoint(2)
         #global name
         #Looping over number_in_cadence chunks.
-        candidate_list, name, id_num = compartmentalizing.get_candidates(n_files, number_in_cadence, complex_cadence, on_off_first, dat_file_list, is_test=False)
-
-        find_event_output_dataframe = compartmentalizing.convert_to_dataframe_or_list(candidate_list)
+    candidate_list, name, id_num = compartmentalizing.get_candidates(n_files, number_in_cadence, on_source_complex_cadence, complex_cadence, on_off_first, dat_file_list, SNR_cut, check_zero_drift, filter_threshold, is_test=False)
+    compartmentalizing.checkpoint(3)
+    find_event_output_dataframe = compartmentalizing.convert_to_dataframe_or_list(candidate_list)
 
     find_event_output_dataframe = compartmentalizing.outputs(saving, check_zero_drift, name, id_num, filter_threshold, SNR_cut, find_event_output_dataframe)
 
     return find_event_output_dataframe
-#find_event_pipeline('HIP39826.lst')
+
+#refactor_find_event_pipeline('HIP39826.lst')
+#refactor_find_event_pipeline('HIP39826.lst', filter_threshold=2)
+#refactor_find_event_pipeline('HIP39826.lst', filter_threshold=1)
