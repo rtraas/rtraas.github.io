@@ -27,7 +27,7 @@ Usage (beta):
 
     dat_file_list_str   The string name of a plaintext file ending in .lst
                         that contains the filenames of .dat files, each on a
-                        new line, that were created with seti_event.py. The
+                        new line, that were created with seti_event.py. The 
                         .lst should contain a set of cadences (ON observations
                         alternating with OFF observations). The cadence can be
                         of any length, given that the ON source is every other
