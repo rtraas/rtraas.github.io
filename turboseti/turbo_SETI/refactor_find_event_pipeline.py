@@ -111,13 +111,17 @@ import find_event
 import pandas as pd
 import refactor_find_event
 
-#required for find_event
+#required for find_event and refactor_find_event
 import time
 import numpy as np
 
-#import helper functions
+#import helper functions and utilities
 import compartmentalizing
 from compartmentalizing import *
+
+
+
+
 
 def refactor_find_event_pipeline(dat_file_list_str,
                         SNR_cut=10,
