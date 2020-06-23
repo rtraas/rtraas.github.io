@@ -90,7 +90,7 @@ author:
     Version 2.0 - Sofia Sheikh (ssheikhmsa@gmail.com),
     Version 1.0 - Emilio Enriquez (jeenriquez@gmail.com)
 
-Last updated: 06/22/2020
+Last updated: 06/23/2020
 ***
 NOTE: This code works for .dat files that were produced by seti_event.py
 after turboSETI version 0.8.2, and blimpy version 1.1.7 (~mid 2019). The
