@@ -46,8 +46,12 @@ Utilities Contained in this file:
     outputs                     -   Updates the find_event_output_dataframe
                                     created by "convert_to_dataframe_or_list".
 
+Author:
+    Version 1.0             Raffy Traas (raffytraas14@gmail.com)
+    
+Last Updated: 06/23/2020
 
-Version 1.0             Raffy Traas (raffytraas14@gmail.com)
+
 """
 
 
