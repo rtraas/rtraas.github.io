@@ -1,14 +1,55 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
 This module contains utilities to be used in "refactor_event_pipeline".
-
 The purpose of this module is mostly to provide a cleaner, simpler structure
 to "refactor_event_pipeline", allowing for easier use and debugging by
 "compartmentalizing" or "chunking" processes performed in
 "refactor_event_pipeline" into simple steps.
 
-Version 1.0             Raffy Traas (raffytraas14@gmail.com)
+Utilities Contained in this file:
 
+    checkpoint                  -   Creates a "checkpoint" in your code to
+                                    help determine which sections of your code
+                                    are operating successfully and which aren't
+
+    opener                      -   Opens the files and returns a list of data
+                                    files, and the length of the list.
+
+    get_source_names            -   Creates a list of source names.
+
+    get_complex_cadence         -   Creates complex_cadence list.
+
+    filter_threshold_statements -   Informs the user of how data will be
+                                    filtered as per the selected
+                                    filter_threshold.
+
+    check_zero_drift_statements -   Informs the user of whether the data will
+                                    be searched for zero drift signals.
+
+    save_statements             -   Informs the user of whether or not the
+                                    output files will be saved.
+
+    get_validation              -   Confirms the user's selected search
+                                    configuration, if user opts for
+                                    user_validation by setting
+                                    "user_validation=True"
+
+    get_complex_cadence         -   Creates a list of candidate events by
+                                    looping over cadence "chunks".  Also
+                                    returns target names and target ID numbers.
+
+    convert_to_dataframe_or_list-   If candidates exist, converts the
+                                    candidate_list to a pandas dataframe.
+
+    outputs                     -   Updates the find_event_output_dataframe
+                                    created by "convert_to_dataframe_or_list".
+
+
+Version 1.0             Raffy Traas (raffytraas14@gmail.com)
 """
+
 
 import refactor_find_event
 import pandas as pd
@@ -16,17 +57,18 @@ import pandas as pd
 import time
 import numpy as np
 
-
 def checkpoint(num):
+    """ Plot waterfall of data in a .fil or .h5 file
+    Args:
+        fil (str): filterbank file containing the dynamic spectrum data
+        source_name (str): name of the target
+        f_start (float): start frequency, in MHz
+        f_stop (float): stop frequency, in MHz
+        drift_rate (float) = drift rate in Hz/s
+        logged (bool): Plot in linear (False) or dB units (True),
+        kwargs: keyword args to be passed to matplotlib imshow()
     """
-    Really only used for debugging purposes.
-    When debugging, allows the user to place various checkpoints 
-    in the code to help diagnose where the code is running properly
-    and where it isn't.
-    """
-
     print('========================= This is checkpoint number ' + str(num) + ' =====================')
-
 
 def opener(file_list, is_test=False):
     """
