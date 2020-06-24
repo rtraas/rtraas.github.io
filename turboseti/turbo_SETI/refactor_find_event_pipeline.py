@@ -107,7 +107,7 @@ NOTE: No support for spliced/non-spliced option select for when
 '''
 
 #required packages and programs
-import find_event
+#import find_event
 import pandas as pd
 import refactor_find_event
 
