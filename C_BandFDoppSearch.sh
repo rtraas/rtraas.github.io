@@ -1,4 +1,4 @@
-### Modified bash scripts from /datax/scratch/karenp/turbo_event
+### Modified bash scripts from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley
 for file in /tess_container/seti_tess/c_band/*0000.h5; do
   if [[ "$file" == *"TIC"* ]] || [[ "$file" == *"HIP"* ]]; then
     echo "$file"
