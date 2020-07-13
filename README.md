@@ -1,4 +1,4 @@
-# turboTESS
+# turboCLOUD
 Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
 
 ## Project Objectives
