@@ -1,8 +1,3 @@
-docker run --rm --name espeon5 --mount type=bind,source=/home/
-raffytraas14/,target=/ -it super_turbo_seti:latest /bin/bash
-
-
-
 docker run --rm --name testing --mount type=bind,source=/home/raffytraas14/,target=/tess_container -it super_turbo_seti:latest /bin/bash
 
 
