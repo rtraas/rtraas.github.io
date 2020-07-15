@@ -13,7 +13,7 @@ A repo of my work during my 10-week internship with Breakthrough Listen @UCBerke
 
 `docker_run_template.txt` --- A text file containing a template of the command to build a container based off the turbo_seti docker image 
 
-`Getting Started.md` --- Where you should start if you're looking to get started with turboCLOUD.  It explains how to use all of the different functions as well as the ins and outs of turboCLOUD
+`GettingStarted.md` --- Where you should start if you're looking to get started with turboCLOUD.  It explains how to use all of the different functions as well as the ins and outs of turboCLOUD
 
 ## Python Scripts
 
