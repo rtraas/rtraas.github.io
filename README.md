@@ -1,7 +1,7 @@
 # turboCLOUD
-Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
+A repository of my work during my 10-week internship with Breakthrough Listen at UC-Berkeley SETI Research Center @UCBerkeleySETI
 
-A repository of my work during my 10-week internship with Breakthrough Listen @UCBerkeleySETI
+Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
 
 ## Project Objectives
 1. Port turbo_seti (https://github.com/UCBerkeleySETI/turbo_seti) to a GCP instance
