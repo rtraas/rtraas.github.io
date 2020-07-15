@@ -7,23 +7,25 @@ For starters, let's begin with a high-level overview of the turboSETI data pipel
 2. Find
 3. Plot
 
-In the next sections, we will make use of flow graphs to explain the what/how for each task.
+In the next sections, we will make use of flow graphs to explain the what/how for each task.  Ultimately, the aim is to help you understand how data flows in turboSETI (i.e., expected I/O) and by extension, what the overall data flow of turboCLOUD will look like.
+
+#### Note: The following will provide only a *high-level* overview of turboSETI.  For those interested in a more technical overview, refer to the turboSETI documentation and/or the Breakthrough Listen [data format paper](https://ui.adsabs.harvard.edu/abs/2019arXiv190607391L/abstract).
 
 ## Search
-Here, we have a diagram showing the flow of the 
+Here, we have a diagram that shows the initial input to turboSETI being a .h5 file.  [add more description]
 <p align="center">
   <img src="https://github.com/rtraas/turboCLOUD/raw/master/Search-Flow-Diagram.png">
 </p>
 
 ## Find
-
+[add description]
 <p align="center">
   <img src="https://github.com/rtraas/turboCLOUD/raw/master/Find-Flow-Diagram.png">
 </p>
 
 
 ## Plot
-
+[add description]
 <p align="center">
   <img src="https://github.com/rtraas/turboCLOUD/raw/master/Plot-Flow-Diagram.png">
 </p>
