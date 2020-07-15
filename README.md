@@ -1,4 +1,6 @@
 # turboCLOUD
+Extending Breakthrough Listen's Doppler drift searching algorithm for cloud-compatibility
+
 A repository of my work during my 10-week internship with Breakthrough Listen at UC-Berkeley SETI Research Center @UCBerkeleySETI
 
 Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
