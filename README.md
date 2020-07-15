@@ -1,6 +1,8 @@
 # turboCLOUD
 Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
 
+A repo of my work during my 10-week internship with Breakthrough Listen @UCBerkeleySETI
+
 ## Project Objectives
 1. Port turbo_seti (https://github.com/UCBerkeleySETI/turbo_seti) to a GCP instance
 2. Use GCP to perform doppler drift searches for radio technosignatures in TESS targets
@@ -11,6 +13,7 @@ Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follo
 
 `docker_run_template.txt` --- A text file containing a template of the command to build a container based off the turbo_seti docker image 
 
+`Getting Started.md` --- Where you should start if you're looking to get started with turboCLOUD.  It explains how to use all of the different functions as well as the ins and outs of turboCLOUD
 
 ## Python Scripts
 
