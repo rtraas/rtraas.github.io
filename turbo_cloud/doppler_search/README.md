@@ -1,4 +1,4 @@
-# How to use the `FDoppSearch` bash scripts
+# How to use the `FDoppSearch` bash scripts to run `turbo_seti` in bulk
 
 ## Overview
 
