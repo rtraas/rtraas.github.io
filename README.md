@@ -1,13 +1,13 @@
 # turboCLOUD
 Extending Breakthrough Listen's Doppler drift searching algorithm for cloud-compatibility
 
-A repository of my work during my 10-week internship with Breakthrough Listen at UC-Berkeley SETI Research Center @UCBerkeleySETI
+A repository of my work during my 10-week internship with __[Breakthrough Listen](https://breakthroughinitiatives.org/initiative/1)__ at __[UC-Berkeley SETI Research Center](https://seti.berkeley.edu/)__ @UCBerkeleySETI
 
 Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follow-Up Observations of TESS Targets
 
 ## Project Objectives
-1. Port turbo_seti (https://github.com/UCBerkeleySETI/turbo_seti) to a GCP instance
-2. Use GCP to perform doppler drift searches for radio technosignatures in TESS targets
+1. Port __[`turbo_seti`](https://github.com/UCBerkeleySETI/turbo_seti)__ to a `GCP` instance
+2. Use __[`GCP` (Google Cloud Platform)](https://console.cloud.google.com/)__ to perform doppler drift searches for radio technosignatures in __[TESS](https://tess.mit.edu/)__ targets
 
 ## Getting Started
 
@@ -19,13 +19,10 @@ Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follo
 
 ## Python Scripts
 
-`superseti.py` --- Used for performing turbo_seti on a batch of files
-
-`make_lst.py`  --- Used for creating properly ordered cadence lists
+`fileio` --- The main tool used to handle everything you need for fetching files quickly.  Retrieved files are given in absolute paths for quick implementation in any script found in the __[`pipes`](https://github.com/rtraas/turboCLOUD/tree/master/turbo_cloud/pipes)__ directory.
 
 
-
-## Bash Scripts
+## __[Bash Scripts](https://github.com/rtraas/turboCLOUD/blob/master/turbo_cloud/doppler_search/README.md)__
 All bash scripts are modified scripts from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley
 
 `L_BandFDoppSearch.sh` --- Used to run turboSETI on all L_band files from the GCS bucket "bl_tess" mounted to the directory "/home/raffytraas14/seti_tess/" on the Google Compute Engine Instance
