@@ -8,7 +8,7 @@ A bash script is any file with the extension ".sh".  Bash scripts, being a type 
 
 So my talk of running `turbo_seti` using bash scripts has intrigued you, has it?  Well, before you can start using the ones provided in this directory, there are some lines of code that need to be edited.  We're going to use C_BandFDoppSearch.sh as the example through which we'll walk through together.
 
-Here's the C_BandFDoppSearch.sh script:
+Here's the template script found in this directory:
 ```
 #!/bin/bash														#1
 															#2
