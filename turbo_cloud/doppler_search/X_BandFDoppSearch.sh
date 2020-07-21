@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 ### Modified bash script from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley
 
