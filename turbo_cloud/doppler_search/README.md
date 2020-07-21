@@ -10,21 +10,21 @@ So my talk of running `turbo_seti` using bash scripts has intrigued you, has it?
 
 Here's the template script found in this directory:
 ```
-#!/bin/bash														#1
-#This is copy-pasted from the file `template_script.txt`								#2
-### Modified bash script from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley	#3
-#example command: for file in /tess_container/seti_tess/c_band/*0000.h5; do	       		    	   	       	#4
-for file in ABSOLUTE_OR_RELATIVE_PATH_TO_FILES_TO_RUN_TURBO_SETI_ON; do							#5
-  if [[ "$file" == *"IDENTIFIER"* ]] || [[ "$file" == *"ANOTHER_OPTIONAL_IDENTIFIER"* ]]; then				#6
-    echo "$file"   		     	   	      			     	 					#7
-															#8
-   time turboSETI "$file" -s 10 -M 4 -o ABSOLUTE_OR_RELATIVE_PATH_TO_DESIRED_OUTPUT_DIRECTORY_FOR_.DAT_FILES		#9
-															#10
-    echo "complete"													#11
-  else															#12
-    echo "invalid"													#13
-  fi															#14
-done															#15
+#!/bin/bash													#1
+#This is copy-pasted from the file `template_script.txt`							#2
+### Based off of /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley	#3
+#example command: for file in /tess_container/seti_tess/c_band/*0000.h5; do	       		    	   	#4
+for file in ABSOLUTE_OR_RELATIVE_PATH_TO_FILES_TO_RUN_TURBO_SETI_ON; do						#5
+  if [[ "$file" == *"IDENTIFIER"* ]] || [[ "$file" == *"ANOTHER_OPTIONAL_IDENTIFIER"* ]]; then			#6
+    echo "$file"   		     	   	      			     	 				#7
+														#8
+   time turboSETI "$file" -s 10 -M 4 -o ABSOLUTE_OR_RELATIVE_PATH_TO_DESIRED_OUTPUT_DIRECTORY_FOR_.DAT_FILES	#9
+														#10
+    echo "complete"												#11
+  else														#12
+    echo "invalid"												#13
+  fi														#14
+done														#15
 ```
 
 
