@@ -10,9 +10,8 @@ So my talk of running `turbo_seti` using bash scripts has intrigued you, has it?
 
 Here's the template script found in this directory:
 ```
-#template_script.txt
 #!/bin/bash														#1
-															#2
+#This is copy-pasted from the file `template_script.txt`								#2
 ### Modified bash script from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley	#3
 #example command: for file in /tess_container/seti_tess/c_band/*0000.h5; do	       		    	   	       	#4
 for file in ABSOLUTE_OR_RELATIVE_PATH_TO_FILES_TO_RUN_TURBO_SETI_ON; do							#5
