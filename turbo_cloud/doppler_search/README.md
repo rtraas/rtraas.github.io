@@ -10,6 +10,7 @@ So my talk of running `turbo_seti` using bash scripts has intrigued you, has it?
 
 Here's the template script found in this directory:
 ```
+#template_script.txt
 #!/bin/bash														#1
 															#2
 ### Modified bash script from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley	#3
