@@ -22,7 +22,7 @@ Doppler Drift Searches for Radio Technosignatures in Breakthrough Listen's Follo
 `fileio` --- The main tool used to handle everything you need for fetching files quickly.  Retrieved files are given in absolute paths for quick implementation in any script found in the __[`pipes`](https://github.com/rtraas/turboCLOUD/tree/master/turbo_cloud/pipes)__ directory.
 
 
-## __[Bash Scripts](https://github.com/rtraas/turboCLOUD/blob/master/turbo_cloud/doppler_search/README.md)__
+## __[Bash Scripts](https://github.com/rtraas/turboCLOUD/tree/master/turbo_cloud/doppler_search)__
 All bash scripts are modified scripts from /datax/scratch/karenp/turbo_event at the Breakthrough Listen Data Center at UC-Berkeley
 
 `L_BandFDoppSearch.sh` --- Used to run turboSETI on all L_band files from the GCS bucket "bl_tess" mounted to the directory "/home/raffytraas14/seti_tess/" on the Google Compute Engine Instance
