@@ -1,10 +1,10 @@
-How to use the "FDoppSearch" bash scripts
+# How to use the `FDoppSearch` bash scripts
 
-Overview
+## Overview
 
 A bash script is any file with the extension ".sh".  Bash scripts, being a type of shell script, are typically used for executing programs and file manipulation.  In our case, they are used as a means to run turbo_seti in bulk.  This means that when you run these bash scripts, as soon as turbo_seti has finished execution on on file A, it will automatically begin execution on file B, then file C, and so on.  So instead of having to manually invoke turbo_seti on file A, waiting for the program to run its course, and then manually invoking turbo_seti on file B,etc., you can do something else while turbo_seti runs in the background.  This will be essential should you need to run turbo_seti on a large number of files (hundreds, thousands, whatever power of 10 it may be) as the thought of manually invoking turbo_seti for every file on Breakthrough Listen's 1,000,000 star survey makes me gag.
 
-Prerequisites
+## Prerequisites
 
 So my talk of running turbo_seti using bash scripts has intrigued you, has it?  Well, before you can start using the ones provided in this directory, there are some lines of code that need to be edited.  We're going to use C_BandFDoppSearch.sh as the example through which we'll walk through together.
 
@@ -27,7 +27,10 @@ for file in ABSOLUTE_OR_RELATIVE_PATH_TO_FILES_TO_RUN_TURBO_SETI_ON; do							#5
 done															#15
 ```
 
+
 The first thing that you might recognize is that I've provided line numbers so that it will be easier to spot certain lines of code when I reference them later on.  For those of you who may not know, all characters and text that follow the pound symbol (#) are ignored when the script is run.  So you are free to leave the line numbers in, but it won't make any difference if you don't, as they are merely included in here for this guide.  Now, let's get on with it.
+
+## Customizing your scripts
 
 There are only 3 lines that need to be changed to repurpose this script to fit your needs.
 
