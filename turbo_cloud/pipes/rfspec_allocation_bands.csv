@@ -1,0 +1,14 @@
+BandStart(MHZ),BandEnd(MHZ),Acronyms,FederalAllocation
+1164,1215,GNSS,Global Navigation Satellite System
+1350,1390,ATC,Air traffic control
+1525,1535,MSS,Mobile-Satellite Service
+1535,1559,MSS,Mobile-Satellite Service
+1559,1610,GNSS,Global Navigation Satellite System
+1675,1695,GOES,Geostationary Operational Environmental Satellite
+1850,2000,PCS,Personal Communications Services
+2025,2035,GOES,Geostationary Operational Environmental Satellite
+2100,2120,DSN,NASA Deep Space Network
+2180,2200,MSS,Mobile-Satellite Service
+2200,2290,EES,Earth Exploration Satellite
+2620,2690,MT,Mobile Telecommunications
+3425,3492.5,NBN,National Broadband Network
