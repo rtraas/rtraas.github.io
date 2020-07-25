@@ -3,16 +3,31 @@
 Cadence building and file acquisition module.
 
 The core module used in `auto_find_event_pipeline.py` and `autoplot.py` because it forgoes the need to
-    1. Manually create lists of `.dat` and `{.fil, .h5}` files in order to run `find_event_pipeline.py` and `plot_event_pipeline.py`
-    2. Manually position the files in the appropriate order in the cadence
+    1. Manually create lists of `.dat` and `{.fil, .h5}` files in order to run `find_event_pipeline.py` and `plot_event_pipeline.py`.
+    2. Manually position the files in the appropriate order in the cadence.
+    3. Manually prefix the files with their absolute or relative directory so that `find_event_pipeline.py` and `plot_event_pipeline.py`
+       are able to find the files (even if those files were moved at some point).
 
-Contains "filter functions" which support the "main functions" (i.e., the most useful ones).
 
 
-Filter Functions are based on the file name conventions presented in the Breakthrough Listen Data Format Paper found with this link:
-https://arxiv.org/pdf/1906.07391.pdf#page=28&zoom=100,49,228
+This module contains "filter functions" which support the "main functions" (i.e., the most useful ones).
+
+
+Filter Functions are based on the file name conventions presented in the Breakthrough Listen Data 
+        Format Paper found with this link: https://arxiv.org/pdf/1906.07391.pdf#page=28&zoom=100,49,228
 
 File name convention:   blc<Node #>_guppi_<MJD Day>_<MJD Seconds>_<Target>_<Scan #>.gpuspec.<Resolution Type>.{fil, h5}
+
+
+Main Functions are based on removing the tedious work that is involved with preparing 
+        the necessary inputs to `find_event_pipeline.py` and `plot_event_pipeline.py`.
+
+For the sake of the reader, common recipes are included in the docstrings for the functions I find myself using most often.
+
+
+#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!
+        `fileio.py` HAS ONLY BEEN TESTED FOR GBT FILES.  COMPATABILITY WITH PARKES AND OTHERS IS IN DEVELOPMENT.
+#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!
 
 
 Author: Raffy Traas     raffytraas14@gmail.com
@@ -42,10 +57,14 @@ def find_MJDObs(singleFile):
     return int(singleFile.split('_')[-4])
 
 def _bySeqObs(input_FileInfo):
+    """For a given FileInfo namedtuple, returns the Sequence Observation value (SeqObs_value)"""
     return input_FileInfo.SeqObs_value
 
 def TripleFilter(matched_filelist, unmatched_filelist, name_of_input_file):
-    """Uses """
+    """
+    The main filter function of `fileio`
+    Given an input list of files, returns it back chronologically ordered
+    """
     quadruplets = [FileInfo(filename, find_MJDObs(filename), find_TObs(filename), find_SeqObs(filename)) for filename in unmatched_filelist]
     name_matched_quadruplets = sorted([N for N in quadruplets if name_of_input_file in N.Name_of_File], key=_bySeqObs)
 
@@ -63,7 +82,20 @@ def TripleFilter(matched_filelist, unmatched_filelist, name_of_input_file):
 
 def FindFile(filename, ext_swap=None, if_none_create=False):
     """
-    Locates the file
+    Locates the full path of the input file so that the file can be
+        analyzed with `find_event_pipeline.py` and `plot_event_pipeline.py`
+        from anywhere.  Forgoes the need to manually prefix file names with 
+        relative or full paths prior to analysis.
+    
+    Useful, because the file you're looking for could exist ANYWHERE in your
+        directory tree, and it will find it for you recursively.
+    
+    Inputs: a file name (str)
+        arguments:
+            ext_swap (str)        :   beta  -->  user discretion is advised
+            if_none_create (bool) :   beta  -->  user discretion is advised
+    
+    Returns: the full path of the input file (str)
     """
     if ext_swap is not None:
         if "." in ext_swap:
@@ -87,6 +119,32 @@ def FindFile(filename, ext_swap=None, if_none_create=False):
         raise FileNotFoundError
 
 def Find(filepath, display=False):
+    """
+    The main Main Function
+    Given a one file name, `Find` will return the full, chronologically-ordered cadence it belongs to.
+        Files are returned in a list as full paths.
+    Useful, because you don't have to specify a location, just the name of the file.
+    
+    Common Recipe:  >> cadence_for_file_named_F = fileio.Find('F.h5')
+                    >> cadence_for_file_named_F
+                    ['F_ON1.h5',
+                     'F_OFF1.h5', 
+                     'F_ON2.h5',
+                     'F_OFF2.h5',
+                     'F_ON3.h5',
+                     'F_OFF3.h5']
+                   
+                    >> cadence_for_file_named_G = fileio.Find('G.dat')
+                    >> cadence_for_file_named_G
+                    ['G_ON1.dat',
+                     'G_OFF1.dat',
+                     'G_ON2.dat',
+                     'G_OFF2.dat',
+                     'G_ON3.dat'
+                     'G_OFF3.dat']
+    
+    Inputs: a file name
+    """
     try:
         File = FindFile(filepath)
     except:
@@ -147,6 +205,10 @@ def Find(filepath, display=False):
 
 def to_list(directory, resolution_type='0', file_type=".h5"):
     """
+    Returns list of all files containing the specified `resolution_type` and `file_type`.
+    
+    Common Recipe:  list_of_all_high_spectral_resolution_h5_files_in_directory_A = fileio.to_list(fileio.Seek('A'))
+    
     resolution type:
         0   high spectral resolution
         1   high time resolution
@@ -184,6 +246,11 @@ def to_list(directory, resolution_type='0', file_type=".h5"):
 
 
 def Seek(target_directory):
+    """
+    Finds full path of a directory
+    
+    Common Recipe: list_of_all_h5_files_in_directory_A = fileio.to_list(fileio.Seek('A'))
+    """
     for root, dirs, files in os.walk('/'+os.path.abspath(os.getcwd()).split('/')[1]):
         for dir in dirs:
             if dir == list(filter(None, target_directory.split('/')))[0]:
