@@ -36,6 +36,7 @@ RUN python3 -m pip install dask xarray
 
 RUN python3 -m pip install "dask[bag]" --upgrade
 RUN python3 -m pip install jupyter
+RUN python3 -m pip install git+https://github.com/UCBerkeleySETI/blimpy
 #RUN python3 -m pip install jupyter-lab ipython
 ######
 # HDF5 fixup
