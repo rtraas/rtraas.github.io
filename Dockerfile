@@ -54,6 +54,15 @@ RUN python3 -m pip install git+https://github.com/UCBerkeleySETI/blimpy
 
 RUN python3 -m pip install turbo-seti
 
+
+#Only use if we are instead using FROM: debian
+#RUN export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+
+RUN echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+RUN apt-get update
+RUN apt-get install -y gcsfuse
+
 #ENV TINI_VERSION v0.6.0
 #ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr#/bin/tini
 #RUN chmod +x /usr/bin/tini
