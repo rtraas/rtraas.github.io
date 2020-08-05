@@ -9,8 +9,6 @@
 # And if you want to access a port, you need to do a similar thing:
 # docker run --rm -it -p 9876:9876 sigpyproc
 
-# INSTALL BASE FROM KERN SUITE
-#FROM kernsuite/base:3
 FROM python:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
